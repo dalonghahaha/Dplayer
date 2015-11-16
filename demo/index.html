@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dplayer Demo</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../theme/font-awesome.min.css" />
+</head>
+<body>
+	<div id="container"></div>
+</body>
+</html>
+<script type="text/javascript" src="../lib/Dplayer.js"></script>
+<script type="text/javascript">
+	var player = new Dplayer({
+		'debug':true,
+		'container':'container',
+		'id':'myplayer',
+		'theme':'../theme/default.css',
+		'width':800,
+		'height':450,
+		'src':'../resource/pix_hd.mp4',
+		'thumb':'../resource/pix_hd.jpg'
+	})
+
+	player.on('ready',function () {
+	})
+</script>
