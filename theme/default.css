@@ -1,160 +1,158 @@
-.Dplayer{
-	background-color: #23241F;
-	cursor: pointer;
+.Dplayer {
+    background-color: #23241F;
+    cursor: pointer;
 }
 
-.Dplayer .left-10{
-	margin-left: 10px;
+.Dplayer .left-10 {
+    margin-left: 10px;
 }
 
-.Dplayer .left-20{
-	margin-left: 20px;
+.Dplayer .left-20 {
+    margin-left: 20px;
 }
 
-.Dplayer .right-10{
-	margin-right: 10px;
+.Dplayer .right-10 {
+    margin-right: 10px;
 }
 
-.Dplayer .right-20{
-	margin-right: 20px;
+.Dplayer .right-20 {
+    margin-right: 20px;
 }
 
-.Dplayer .hidden{
-	display: none;
+.Dplayer .hidden {
+    display: none;
 }
 
-
-.Dplayer .video{
-	background-color: #23241F;
+.Dplayer .video {
+    background-color: #23241F;
 }
 
-.Dplayer .control-bar{
-	background-color: #23241F;
-	width: 100%;
+.Dplayer .control-bar {
+    background-color: #23241F;
+    width: 100%;
 }
 
-.Dplayer .control-bar .progress-bar{
-	background-color: #595959;
-	position: relative;
-	width: 100%;
-	height: 5px;
-	line-height: 5px;
+.Dplayer .control-bar .progress-bar {
+    background-color: #595959;
+    position: relative;
+    width: 100%;
+    height: 5px;
+    line-height: 5px;
 }
 
-.Dplayer .control-bar .buffer-bar{
-	background-color: #F0F0F0;
-	opacity: 0.5;
-	position: absolute;
-	width: 0%;
-	height: 5px;
-	line-height: 5px;
-	left: 0;
-	top:0;
+.Dplayer .control-bar .buffer-bar {
+    background-color: #F0F0F0;
+    opacity: 0.5;
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    line-height: 5px;
+    left: 0;
+    top: 0;
 }
 
-.Dplayer .control-bar .time-bar{
-	background-color: #FA8F02;
-	position: absolute;
-	width: 0%;
-	height: 5px;
-	line-height: 5px;
-	left: 0;
-	top:0;
+.Dplayer .control-bar .time-bar {
+    background-color: #FA8F02;
+    position: absolute;
+    width: 0%;
+    height: 5px;
+    line-height: 5px;
+    left: 0;
+    top: 0;
 }
 
-.Dplayer .control-bar .knob-bar{
-	background-color: #505050;
-	position: absolute;
-	border-radius: 100%;
-	width: 10px;
-	height: 10px;
-	line-height: 10px;
-	left:5px;
-	margin-top: -2.5px;
-	margin-left: -5px;
-	margin-right: 0px;
+.Dplayer .control-bar .knob-bar {
+    background-color: #505050;
+    position: absolute;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    left: 5px;
+    margin-top: -2.5px;
+    margin-left: -5px;
+    margin-right: 0px;
 }
 
-.Dplayer .control-bar .volume-progress-bar{
-	margin-top: 9px;
-	width: 100px;
-	height: 17px;
-	line-height: 17px;
-	position: relative;
-	float: left;
-
+.Dplayer .control-bar .volume-progress-bar {
+    margin-top: 9px;
+    width: 100px;
+    height: 17px;
+    line-height: 17px;
+    position: relative;
+    float: left;
 }
 
-.Dplayer .control-bar .volume-bar{
-	margin-top: 6px;
-	background-color: #FA8F02;
-	position: absolute;
-	width: 100px;
-	height: 5px;
-	line-height: 5px;
-	left: 0;
-	top:0;
+.Dplayer .control-bar .volume-bar {
+    margin-top: 6px;
+    background-color: #FA8F02;
+    position: absolute;
+    width: 100px;
+    height: 5px;
+    line-height: 5px;
+    left: 0;
+    top: 0;
 }
 
-.Dplayer .control-bar .volume-knob-bar{
-	background-color: #505050;
-	position: absolute;
-	border-radius: 100%;
-	width: 10px;
-	height: 10px;
-	line-height: 10px;
-	left:100px;
-	margin-top: 3.5px;
-	margin-left: -5px;
-	margin-right: 0px;
+.Dplayer .control-bar .volume-knob-bar {
+    background-color: #505050;
+    position: absolute;
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    left: 100px;
+    margin-top: 3.5px;
+    margin-left: -5px;
+    margin-right: 0px;
 }
 
-.Dplayer .control-bar .button-bar{
-	width: 100%;
-	height: 35px;
-	line-height: 35px;
-	background-color: #242424;
-	position: relative;
-	left: 0;
-	top:5px;
+.Dplayer .control-bar .button-bar {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    background-color: #242424;
+    position: relative;
+    left: 0;
+    top: 5px;
 }
 
-.Dplayer .control-bar .button-bar .icon{
-	color:#5F5F5F;
+.Dplayer .control-bar .button-bar .icon {
+    color: #5F5F5F;
 }
 
-.Dplayer .control-bar .button-bar .icon:hover{
-	color:#FA8F02;
+.Dplayer .control-bar .button-bar .icon:hover {
+    color: #FA8F02;
 }
 
-.Dplayer .control-bar .button-bar .label-text{
-	color:#5F5F5F;
-	font-size: .8em;
-	font-family: FontAwesome;
+.Dplayer .control-bar .button-bar .label-text {
+    color: #5F5F5F;
+    font-size: .8em;
+    font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
 }
 
-.Dplayer .control-bar .button-bar .label-show{
-	color: #424242;
+.Dplayer .control-bar .button-bar .label-show {
+    color: #424242;
 }
 
-.Dplayer .control-bar .button-bar .control{
-	margin-top: 9px;
-	float: left;
+.Dplayer .control-bar .button-bar .control {
+    margin-top: 9px;
+    float: left;
 }
 
-.Dplayer .control-bar .button-bar .left-group{
-	height: 35px;
-	line-height: 35px;
-	vertical-align:middle;
-	float: left;
+.Dplayer .control-bar .button-bar .left-group {
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    float: left;
 }
 
-.Dplayer .control-bar .button-bar .right-group{
-	height: 35px;
-	line-height: 35px;
-	vertical-align:middle;
-	position: relative;
-	float: right;
+.Dplayer .control-bar .button-bar .right-group {
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    position: relative;
+    float: right;
 }
