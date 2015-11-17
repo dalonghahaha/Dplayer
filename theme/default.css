@@ -1,5 +1,6 @@
 .Dplayer{
 	background-color: #23241F;
+	cursor: pointer;
 }
 
 .Dplayer .left-10{
@@ -18,6 +19,11 @@
 	margin-right: 20px;
 }
 
+.Dplayer .hidden{
+	display: none;
+}
+
+
 .Dplayer .video{
 	background-color: #23241F;
 }
@@ -33,18 +39,15 @@
 	width: 100%;
 	height: 5px;
 	line-height: 5px;
-    cursor: pointer;
-	left: 0;
-	top:0;
 }
 
 .Dplayer .control-bar .buffer-bar{
 	background-color: #F0F0F0;
+	opacity: 0.5;
 	position: absolute;
-	width: 100%;
+	width: 0%;
 	height: 5px;
 	line-height: 5px;
-	cursor: pointer;
 	left: 0;
 	top:0;
 }
@@ -52,35 +55,66 @@
 .Dplayer .control-bar .time-bar{
 	background-color: #FA8F02;
 	position: absolute;
-	width: 90%;
+	width: 0%;
 	height: 5px;
 	line-height: 5px;
-	cursor: pointer;
 	left: 0;
 	top:0;
 }
 
 .Dplayer .control-bar .knob-bar{
-	background-color: #5F5F5F;
+	background-color: #505050;
 	position: absolute;
 	border-radius: 100%;
 	width: 10px;
 	height: 10px;
 	line-height: 10px;
-	cursor: pointer;
-	left:0%;
+	left:5px;
 	margin-top: -2.5px;
 	margin-left: -5px;
 	margin-right: 0px;
 }
 
+.Dplayer .control-bar .volume-progress-bar{
+	margin-top: 9px;
+	width: 100px;
+	height: 17px;
+	line-height: 17px;
+	position: relative;
+	float: left;
+
+}
+
+.Dplayer .control-bar .volume-bar{
+	margin-top: 6px;
+	background-color: #FA8F02;
+	position: absolute;
+	width: 100px;
+	height: 5px;
+	line-height: 5px;
+	left: 0;
+	top:0;
+}
+
+.Dplayer .control-bar .volume-knob-bar{
+	background-color: #505050;
+	position: absolute;
+	border-radius: 100%;
+	width: 10px;
+	height: 10px;
+	line-height: 10px;
+	left:100px;
+	margin-top: 3.5px;
+	margin-left: -5px;
+	margin-right: 0px;
+}
 
 .Dplayer .control-bar .button-bar{
 	width: 100%;
 	height: 35px;
 	line-height: 35px;
 	background-color: #242424;
-	position: inherit;
+	position: relative;
 	left: 0;
 	top:5px;
 }
@@ -105,6 +139,11 @@
 	color: #424242;
 }
 
+.Dplayer .control-bar .button-bar .control{
+	margin-top: 9px;
+	float: left;
+}
+
 .Dplayer .control-bar .button-bar .left-group{
 	height: 35px;
 	line-height: 35px;
@@ -116,5 +155,6 @@
 	height: 35px;
 	line-height: 35px;
 	vertical-align:middle;
+	position: relative;
 	float: right;
 }
