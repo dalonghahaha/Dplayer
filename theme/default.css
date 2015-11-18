@@ -74,13 +74,24 @@
     margin-right: 0px;
 }
 
-.Dplayer .control-bar .volume-progress-bar {
+.Dplayer .control-bar .volume-control-bar {
     margin-top: 9px;
     width: 100px;
     height: 17px;
     line-height: 17px;
     position: relative;
     float: left;
+}
+
+.Dplayer .control-bar .volume-progress-bar {
+    background-color: #595959;
+    margin-top: 6px;
+    position: absolute;
+    width: 100px;
+    height: 5px;
+    line-height: 5px;
+    left: 0;
+    top: 0;
 }
 
 .Dplayer .control-bar .volume-bar {
@@ -119,6 +130,8 @@
 
 .Dplayer .control-bar .button-bar .icon {
     color: #5F5F5F;
+    float: left;
+    margin-top: 9px;
 }
 
 .Dplayer .control-bar .button-bar .icon:hover {
@@ -131,6 +144,12 @@
     font-family: FontAwesome;
     font-weight: normal;
     font-style: normal;
+    float: left;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    -khtml-user-select:none;
+    user-select:none;
 }
 
 .Dplayer .control-bar .button-bar .label-show {
@@ -139,7 +158,6 @@
 
 .Dplayer .control-bar .button-bar .control {
     margin-top: 9px;
-    float: left;
 }
 
 .Dplayer .control-bar .button-bar .left-group {
