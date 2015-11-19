@@ -5,16 +5,15 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../theme/font-awesome.min.css" />
 </head>
-<!-- <body>
+<body>
 	<h4>single</h4>
-	<div id="single"></div> -->
+	<div id="single"></div>
 	<h4>multiple</h4>
 	<div id="multiple"></div>
 </body>
 </html>
 <script type="text/javascript" src="../lib/Dplayer.js"></script>
 <script type="text/javascript">
-	/*
 	var player = new Dplayer({
 		'debug':true,
 		'container':'single',
@@ -22,10 +21,26 @@
 		'theme':'../theme/default.css',
 		'width':720,
 		'height':480,
-		'src':'http://7te89b.com1.z0.glb.clouddn.com/video/pix_hd.mp4',
-		'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/pix_hd.jpg'
+		'src':[
+			{
+				'index':'fhd',
+				'name':'超清',
+				'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_720p.mp4'
+			},
+			{
+				'index':'hd',
+				'name':'高清',
+				'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_480p.mp4'
+			},
+			{
+				'default':1,
+				'index':'sd',
+				'name':'标清',
+				'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_320p.mp4'
+			}
+		],
+		'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/NikeFootball.jpg'
 	});
-	*/
 	var multiple_player = new Dplayer({
 		'debug':true,
 		'container':'multiple',
@@ -42,6 +57,27 @@
 			{
 				'src':'http://7te89b.com1.z0.glb.clouddn.com/video/yuedui_hd.mp4',
 				'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/yuedui_hd.jpg'
+			},
+			{
+				'src':[
+					{
+						'index':'fhd',
+						'name':'超清',
+						'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_720p.mp4'
+					},
+					{
+						'index':'hd',
+						'name':'高清',
+						'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_480p.mp4'
+					},
+					{
+						'default':1,
+						'index':'sd',
+						'name':'标清',
+						'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_320p.mp4'
+					}
+				],
+				'thumb':''
 			},
 		]
 	});
