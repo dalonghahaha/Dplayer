@@ -18,10 +18,12 @@
 </body>
 
 </html>
-<script type="text/javascript" src="../lib/Dplayer.js"></script>
+<script type="text/javascript" src="../src/_constructor.js"></script>
+<script type="text/javascript" src="../src/class.js"></script>
+<script type="text/javascript" src="../src/event.js"></script>
+<script type="text/javascript" src="../src/tools.js"></script>
 <script type="text/javascript">
 var div = document.querySelector(".A");
-
 div.addEventListener('click',function(event) {
 	var target = event.target || event.srcElement;
 	var path = [target];
@@ -31,4 +33,14 @@ div.addEventListener('click',function(event) {
 	}
 	console.log(path);
 })
+
+var Dplayer = new Dplayer({});
+
+var test = Dplayer.query_element('C');
+
+test.add_class('Fuck');
+
+Dplayer.warn('test');
+
 </script>
+
