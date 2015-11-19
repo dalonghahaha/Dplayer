@@ -6,15 +6,15 @@
 	<link rel="stylesheet" href="../theme/font-awesome.min.css" />
 </head>
 <body>
-	<h4>single</h4>
+<!-- 	<h4>single</h4>
 	<div id="single"></div>
-	<h4>multiple</h4>
+	<h4>multiple</h4> -->
 	<div id="multiple"></div>
 </body>
 </html>
 <script type="text/javascript" src="../lib/Dplayer.js"></script>
 <script type="text/javascript">
-	var player = new Dplayer({
+/*	var player = new Dplayer({
 		'debug':true,
 		'container':'single',
 		'id':'myplayer',
@@ -40,7 +40,7 @@
 			}
 		],
 		'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/NikeFootball.jpg'
-	});
+	});*/
 	var multiple_player = new Dplayer({
 		'debug':true,
 		'container':'multiple',
@@ -49,18 +49,21 @@
 		'width':720,
 		'height':480,
 		'multiple':true,
+		'about':[
+			{
+				'text':'帮助信息',
+				'link':'http://www.google.com'
+			},
+			{
+				'text':'意见反馈',
+				'link':'http://www.google.com'
+			}
+		],
 		'playlist':[
-			{
-				'src':'http://7te89b.com1.z0.glb.clouddn.com/video/pix_hd.mp4',
-				'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/pix_hd.jpg'
-			},
-			{
-				'src':'http://7te89b.com1.z0.glb.clouddn.com/video/yuedui_hd.mp4',
-				'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/yuedui_hd.jpg'
-			},
 			{
 				'src':[
 					{
+						'default':1,
 						'index':'fhd',
 						'name':'超清',
 						'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_720p.mp4'
@@ -71,14 +74,21 @@
 						'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_480p.mp4'
 					},
 					{
-						'default':1,
 						'index':'sd',
 						'name':'标清',
 						'url':'http://7te89b.com1.z0.glb.clouddn.com/Dplayer/NikeFootball_320p.mp4'
 					}
 				],
-				'thumb':''
+				'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/NikeFootball.jpg'
+			},			
+			{
+				'src':'http://7te89b.com1.z0.glb.clouddn.com/video/pix_hd.mp4',
+				'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/pix_hd.jpg'
 			},
+			{
+				'src':'http://7te89b.com1.z0.glb.clouddn.com/video/yuedui_hd.mp4',
+				'thumb':'http://7te89b.com1.z0.glb.clouddn.com/img/yuedui_hd.jpg'
+			}
 		]
 	});
 </script>

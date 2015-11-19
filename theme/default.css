@@ -1,6 +1,14 @@
 .Dplayer {
     background-color: #23241F;
     cursor: pointer;
+    font-family: "Microsoft YaHei", "微软雅黑", helvetica, arial, verdana, tahoma, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    -khtml-user-select:none;
+    user-select:none;
 }
 
 .Dplayer .left-10 {
@@ -25,19 +33,66 @@
 
 .Dplayer .video {
     background-color: #000000;
+    position: relative;
+}
+
+.Dplayer .video-mask{
+    width: 100%;
+    height:100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.Dplayer .video-mask-about{
+    background-color: #23241F;
+    opacity: 0.8;
+    position: absolute;
+    border-radius: .2em;
+    left: 0;
+    top: 0;
+}
+
+.Dplayer .video-mask-text{
+    color: #F0F0F0;
+    font-size: .8em;
+    text-align: left;
+    margin-left:15px;
+    margin-right:15px;
+    min-width: 100px;
+    border-bottom: 1px solid #333333;
+    height: 30px;
+    line-height: 30px;
+}
+
+.Dplayer .video-mask-text:hover{
+    color: #FA8F02;
+    font-weight: bold;
 }
 
 .Dplayer .control-bar {
     background-color: #23241F;
     width: 100%;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+}
+
+.Dplayer .control-bar .progress-control-bar {
+    background-color: #242424;
+    position: relative;
+    width: 100%;
+    height: 10px;
+    line-height: 10px;
+    overflow: visible;
 }
 
 .Dplayer .control-bar .progress-bar {
     background-color: #595959;
-    position: relative;
     width: 100%;
     height: 5px;
     line-height: 5px;
+    overflow: visible;
 }
 
 .Dplayer .control-bar .buffer-bar {
@@ -65,11 +120,11 @@
     background-color: #505050;
     position: absolute;
     border-radius: 100%;
-    width: 10px;
-    height: 10px;
-    line-height: 10px;
+    width: 13px;
+    height: 13px;
+    line-height: 13px;
     left: 5px;
-    margin-top: -2.5px;
+    margin-top: -4px;
     margin-left: -5px;
     margin-right: 0px;
 }
@@ -121,28 +176,22 @@
 .Dplayer .control-bar .definition-bar{
     position: relative;
     float: left;
-    -moz-user-select:none;
-    -webkit-user-select:none;
-    -ms-user-select:none;
-    -khtml-user-select:none;
-    user-select:none;
 }
 
 .Dplayer .control-bar .definition-label{
-    color: #505050;
-    width: 60px;
-    height: 27px;
-    line-height: 27px;
-    margin-top: 4px;
+    color: #606060;
+    width: 50px;
+    height: 21px;
+    line-height: 21px;
+    margin-top: 7px;
     font-size: .8em;
     text-align: center;
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
     background-color: #111111;
     border-radius: .5em;
 }
+
 .Dplayer .control-bar .definition-label:hover{
+
     color: #FFFFFF;
 }
 
@@ -158,9 +207,6 @@
 .Dplayer .control-bar .definition-option{
     color: #F0F0F0;
     font-size: .8em;
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
     width: 50px;
     height: 30px;
     line-height: 30px;
@@ -173,9 +219,6 @@
 .Dplayer .control-bar .definition-option-selected{
     color: #FA8F02;
     font-size: .8em;
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
     width: 50px;
     height: 30px;
     line-height: 30px;
@@ -199,9 +242,8 @@
     height: 35px;
     line-height: 35px;
     background-color: #242424;
-    position: relative;
-    left: 0;
-    top: 5px;
+    position: absolute;
+    top:10px;
 }
 
 .Dplayer .control-bar .button-bar .icon {
@@ -217,15 +259,7 @@
 .Dplayer .control-bar .button-bar .label-text {
     color: #5F5F5F;
     font-size: .8em;
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
     float: left;
-    -moz-user-select:none;
-    -webkit-user-select:none;
-    -ms-user-select:none;
-    -khtml-user-select:none;
-    user-select:none;
 }
 
 .Dplayer .control-bar .button-bar .label-show {
