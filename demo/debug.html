@@ -6,17 +6,25 @@
 	<link rel="stylesheet" href="../theme/font-awesome.min.css" />
 </head>
 <body>
-	<div id="multiple"></div>
+	<div id="myplayer"></div>
 </body>
 </html>
-<script type="text/javascript" src="../lib/Dplayer.js"></script>
+<script type="text/javascript" src="../src/_constructor.js"></script>
+<script type="text/javascript" src="../src/class.js"></script>
+<script type="text/javascript" src="../src/api.js"></script>
+<script type="text/javascript" src="../src/tools.js"></script>
+<script type="text/javascript" src="../src/build.js"></script>
+<script type="text/javascript" src="../src/player.js"></script>
+<script type="text/javascript" src="../src/delegate.js"></script>
+<script type="text/javascript" src="../src/event_video.js"></script>
+<script type="text/javascript" src="../src/event_control.js"></script>
 <script type="text/javascript">
-	var multiple_player = new Dplayer({
+	var player = new Dplayer({
 		'debug':true,
-		'container':'multiple',
-		'id':'multipleplayer',
+		'container':'myplayer',
+		'id':'myplayer',
 		'theme':'../theme/default.css',
-		'width':720,
+		'width':854,
 		'height':480,
 		'multiple':true,
 		'about':[

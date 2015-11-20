@@ -95,7 +95,7 @@
     overflow: visible;
 }
 
-.Dplayer .control-bar .buffer-bar {
+.Dplayer .control-bar .progress-bar .buffer-bar {
     background-color: #F0F0F0;
     opacity: 0.5;
     position: absolute;
@@ -106,7 +106,7 @@
     top: 0;
 }
 
-.Dplayer .control-bar .time-bar {
+.Dplayer .control-bar .progress-bar .time-bar {
     background-color: #FA8F02;
     position: absolute;
     width: 0%;
@@ -116,7 +116,7 @@
     top: 0;
 }
 
-.Dplayer .control-bar .knob-bar {
+.Dplayer .control-bar .progress-bar .knob-bar {
     background-color: #505050;
     position: absolute;
     border-radius: 100%;
@@ -129,8 +129,74 @@
     margin-right: 0px;
 }
 
+.Dplayer .control-bar .progress-bar .button-bar {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    background-color: #242424;
+    position: absolute;
+    top:10px;
+}
+
+.Dplayer .control-bar .button-bar .label-text {
+    color: #5F5F5F;
+    font-size: .8em;
+    float: left;
+}
+
+.Dplayer .control-bar .button-bar .left-group {
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    position: relative;
+    float: left;
+}
+
+.Dplayer .control-bar .button-bar .left-group .icon {
+    color: #5F5F5F;
+    margin-top: 9px;
+    margin-left: 20px;
+    float: left;
+}
+
+.Dplayer .control-bar .button-bar .left-group .icon:hover {
+    color: #F0F0F0;
+    font-size: 1.2em;
+}
+
+.Dplayer .control-bar .button-bar .left-group .label-position {
+    margin-left: 20px;
+    margin-right: 2px;
+}
+
+.Dplayer .control-bar .button-bar .left-group .label-duration {
+    margin-left: 2px;
+    color: #424242;
+}
+
+.Dplayer .control-bar .button-bar .right-group {
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    position: relative;
+    float: right;
+}
+
+.Dplayer .control-bar .button-bar .right-group .icon {
+    color: #5F5F5F;
+    margin-top: 9px;
+    margin-right: 20px;
+    float: left;
+}
+
+.Dplayer .control-bar .button-bar .right-group .icon:hover {
+    color: #F0F0F0;
+    font-size: 1.2em;
+}
+
 .Dplayer .control-bar .volume-control-bar {
     margin-top: 9px;
+    margin-right: 20px;
     width: 100px;
     height: 17px;
     line-height: 17px;
@@ -174,6 +240,7 @@
 }
 
 .Dplayer .control-bar .definition-bar{
+    margin-right: 20px;
     position: relative;
     float: left;
 }
@@ -234,53 +301,6 @@
 }
 
 .Dplayer .control-bar .definition-option-last{
+
     border-bottom: 0px;
-}
-
-.Dplayer .control-bar .button-bar {
-    width: 100%;
-    height: 35px;
-    line-height: 35px;
-    background-color: #242424;
-    position: absolute;
-    top:10px;
-}
-
-.Dplayer .control-bar .button-bar .icon {
-    color: #5F5F5F;
-    float: left;
-    margin-top: 9px;
-}
-
-.Dplayer .control-bar .button-bar .icon:hover {
-    color: #FA8F02;
-}
-
-.Dplayer .control-bar .button-bar .label-text {
-    color: #5F5F5F;
-    font-size: .8em;
-    float: left;
-}
-
-.Dplayer .control-bar .button-bar .label-show {
-    color: #424242;
-}
-
-.Dplayer .control-bar .button-bar .control {
-    margin-top: 9px;
-}
-
-.Dplayer .control-bar .button-bar .left-group {
-    height: 35px;
-    line-height: 35px;
-    vertical-align: middle;
-    float: left;
-}
-
-.Dplayer .control-bar .button-bar .right-group {
-    height: 35px;
-    line-height: 35px;
-    vertical-align: middle;
-    position: relative;
-    float: right;
 }

@@ -17,8 +17,8 @@ function Dplayer(config) {
         //运行时数据初始化
         this.runtime = this.build_runtime();
 
-        //表单初始化
-        //this.init();
+        //初始化
+        this.init();
     }
 }
 
@@ -50,7 +50,11 @@ Dplayer.prototype.build_config = function(config) {
         //封面图
         thumb: null,
         //播放列表
-        playlist:[]
+        playlist:[],
+        //是否异步读取播放列表
+        playlist_aysnc: false,
+        //播放列表获取地址地址
+        playlist_url: null
     }
     if (config) {
         for (var p in config) {
@@ -97,5 +101,43 @@ Dplayer.prototype.build_runtime = function() {
  * 配置文件校验函数
  */
 Dplayer.prototype.check_config = function() {
+    if (!this.config.multiple) {
+        if(!this.config.src){
+            this.error('视频源配置错误');
+            return false;
+        }
+    } else {
+        if(!this.config.playlist){
+            this.error('视频源配置错误');
+            return false;
+        }
+    }
+    if(this.config.playlist_aysnc && !this.config.playlist_url){
+        this.error('视频源配置错误');
+        return false;
+    }
     return true;
+}
+
+/**
+ * 初始化函数
+ */
+Dplayer.prototype.init = function() {
+    if (!this.config.id) {
+        this.config.id = "Dplayer_" + new Date().getTime() + Math.floor(Math.random() * 100);
+    }
+    if (this.config.theme) {
+        var css = this.css_link(this.config.theme);
+        this.css_ready(css, this.on_theme_ready.bind(this));
+    } else {
+        this.build_player();
+    }
+}
+
+/**
+ * 皮肤加载完毕回调
+ */
+Dplayer.prototype.on_theme_ready = function() {
+    this.debug('播放器皮肤加载完毕');
+    this.build_player();
 }

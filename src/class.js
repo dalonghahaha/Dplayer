@@ -19,7 +19,7 @@ Dplayer.prototype._class = {
     PROGRESS_BAR: 'progress-bar',
     TIME_BAR: 'time-bar',
     BUFFER_BAR: 'buffer-bar',
-    KNOB_BAR: 'knob-bar hidden',
+    KNOB_BAR: 'knob-bar',
 
     //控制栏
     BUTTON_BAR: 'button-bar',
@@ -60,5 +60,6 @@ Dplayer.prototype._class = {
     DEFINITION_LABEL: 'definition-label',
     DEFINITION_PANEL: 'definition-panel',
     DEFINITION_OPTION: 'definition-option',
+    DEFINITION_OPTION_LAST: 'definition-option-last',
     DEFINITION_OPTION_SELECTED: 'definition-option-selected',
 }

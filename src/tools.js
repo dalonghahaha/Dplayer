@@ -5,9 +5,9 @@
 Dplayer.prototype.debug = function(info) {
     if (this.config.debug) {
         if (info instanceof Object) {
-            console.log("Dplayer【%s】【%s】:%o", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"),this.config.id, info);
+            console.log("Dplayer【%s】:%o", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"), info);
         } else {
-            console.log("Dplayer【%s】【%s】:%s", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"),this.config.id, info);
+            console.log("Dplayer【%s】:%s", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"), info);
         }
     }
 }
@@ -17,17 +17,10 @@ Dplayer.prototype.debug = function(info) {
  * @param info 错误信息
  */
 Dplayer.prototype.error = function(info) {
-    if (this.config.id) {
-        if (info instanceof Object) {
-            console.error("Dplayer【%s】【%s】:%o", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"),this.config.id, info);
-        } else {
-            console.error("Dplayer【%s】【%s】:%s", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"),this.config.id, info);
-        }
+    if (info instanceof Object) {
+        console.error("Dplayer【%s】:%o", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"), info);
     } else {
         console.error("Dplayer【%s】:%s", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"), info);
-    }
-    if (this.config.on_player_error && this.config.on_player_error instanceof Function) {
-        this.config.on_player_error(info);
     }
 }
 
@@ -36,17 +29,10 @@ Dplayer.prototype.error = function(info) {
  * @param info 警告信息
  */
 Dplayer.prototype.warn = function(info) {
-    if (this.config.id) {
-        if (info instanceof Object) {
-            console.warn("Dplayer【%s】【%s】:%o", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"),this.config.id, info);
-        } else {
-            console.warn("Dplayer【%s】【%s】:%s", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"),this.config.id, info);
-        }
+    if (info instanceof Object) {
+        console.warn("Dplayer【%s】:%o", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"), info);
     } else {
         console.warn("Dplayer【%s】:%s", this.format_date(new Date(),"yyyy-M-dd hh:mm:ss S"), info);
-    }
-    if (this.config.on_player_warn && this.config.on_player_warn instanceof Function) {
-        this.config.on_player_warn(info);
     }
 }
 
@@ -161,48 +147,132 @@ Dplayer.prototype.remove_class = function(element, class_name) {
 }
 
 /**
- * 生成DIV统一方法
- * @param  class_name 类名
- * @param  inner_text 内容
+ * 异步get
+ * @param  url      [请求链接]
+ * @param  data     [请求数据]
+ * @param  callback [回调函数]
  */
-Dplayer.prototype.create_element = function(class_name, inner_text) {
-    var element = document.createElement('div');
-    element.className = class_name;
-    if (inner_text) {
-        element.innerText = inner_text;
+Dplayer.prototype.async_get = function(url, data, callback) {
+    this.debug(data);
+    var AjaxRequest = new XMLHttpRequest();
+    if (!AjaxRequest) {
+        this.error("Ajax请求初始化失败!");
+        return false;
+    }　
+    AjaxRequest.responseType = 'json';
+    AjaxRequest.onreadystatechange = function() {
+        switch (AjaxRequest.readyState) {
+            case 1:
+                this.debug('ajax打开，准备上传');
+                break;
+            case 4:
+                if (AjaxRequest.status == 200) {
+                    this.debug('ajax 收到服务器端数据');
+                    this.debug(AjaxRequest.response);
+                    if (!AjaxRequest.response) {
+                        this.error('ajax返回格式错误');
+                    } else {
+                        callback(AjaxRequest.response);
+                    }
+                } else {
+                    this.error("上传过程出现错误,状态:" + AjaxRequest.status);
+                }
+                break;
+        }
+    }.bind(this);
+    AjaxRequest.error = function() {
+        this.error("提交过程出现错误");
+    }.bind(this);
+    url += "?time=" + new Date().getTime();
+    for (var p in data) {
+        url += "&" + p + "=" + data[p];
     }
-    return element;
+    AjaxRequest.open('GET', url, true);　
+    AjaxRequest.send(null);
 }
 
 /**
- * 根据类名定位元素
- * @param  class_name 类名
+ * 异步post
+ * @param  url      [请求链接]
+ * @param  data     [请求数据]
+ * @param  callback [回调函数]
  */
-Dplayer.prototype.query_element = function(class_name){
-    if(class_name){
-        var selector = "." + class_name;
-        var result = document.querySelector(selector);
-        result.has_class = function(class_name){
-            class_name = class_name || '';
-            if (class_name.replace(/\s/g, '').length == 0) return false;
-            return new RegExp(' ' + class_name + ' ').test(' ' + this.className + ' ');
-        };
-        result.add_class = function(class_name){
-            if (!this.has_class(class_name)) {
-                this.className = this.className == '' ? class_name : this.className + ' ' + class_name;
-            }
-        };
-        result.remove_class = function(class_name){
-            if (this.has_class(class_name)) {
-                var newClass = ' ' + this.className.replace(/[\t\r\n]/g, '') + ' ';
-                while (newClass.indexOf(' ' + class_name + ' ') >= 0) {
-                    newClass = newClass.replace(' ' + class_name + ' ', ' ');
+Dplayer.prototype.async_post = function(url, data, callback) {
+    this.debug(data);
+    var AjaxRequest = new XMLHttpRequest();
+    if (!AjaxRequest) {
+        this.error("Ajax请求初始化失败!");
+        return false;
+    }　
+    AjaxRequest.responseType = 'json';
+    AjaxRequest.onreadystatechange = function() {
+        switch (AjaxRequest.readyState) {
+            case 1:
+                this.debug('ajax打开，准备上传');
+                break;
+            case 4:
+                if (AjaxRequest.status == 200) {
+                    this.debug('ajax 收到服务器端数据');
+                    callback(AjaxRequest.response);
+                } else {
+                    this.error("上传过程出现错误,状态:" + AjaxRequest.status);
                 }
-                this.className = newClass.replace(/^\s+|\s+$/g, '');
-            }
-        };
-        return result;
+                break;
+        }
+    }.bind(this);
+    AjaxRequest.error = function() {
+        this.error("提交过程出现错误");
+    }.bind(this);
+    var UploaDplayer = new FormData();
+    if (UploaDplayer) {
+        for (var p in data) {
+            UploaDplayer.append(p, data[p]);
+        }
+        AjaxRequest.open('POST', url, true);　
+        AjaxRequest.send(UploaDplayer);
     } else {
-        return null;
+        this.error("提交过程出现错误");
     }
 }
+
+/**
+ * 添加css头
+ * @param  url [css链接地址]
+ */
+Dplayer.prototype.css_link = function(url) {
+    var head = document.getElementsByTagName('head')[0];
+    var linkTag = document.createElement('link');
+    linkTag.setAttribute('rel', 'stylesheet');
+    linkTag.setAttribute('type', 'text/css');
+    linkTag.href = url;
+    head.appendChild(linkTag);
+    return linkTag;
+}
+
+/**
+ * css加载判断
+ * @param  link     [css链接]
+ * @param  callback [回调函数]
+ */
+Dplayer.prototype.css_ready = function(link, callback) {
+    var d = document,
+        t = d.createStyleSheet,
+        r = t ? 'rules' : 'cssRules',
+        s = t ? 'styleSheet' : 'sheet',
+        l = d.getElementsByTagName('link');
+    // passed link or last link node
+    link || (link = l[l.length - 1]);
+
+    function check() {
+        try {
+            return link && link[s] && link[s][r] && link[s][r][0];
+        } catch (e) {
+            return false;
+        }
+    }
+
+    (function poll() {
+        check() && setTimeout(callback, 0) || setTimeout(poll, 100);
+    })();
+}
+
