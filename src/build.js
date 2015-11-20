@@ -285,7 +285,7 @@ Dplayer.prototype.on_player_build = function() {
     //注册control事件
     this.delegate_control_event();     
     //注册遮罩层事件
-    //this.rigester_video_mask_event();
+    this.delegate_mask_event();
     //自动播放   
     if (this.config.autoplay) {
         this.play();

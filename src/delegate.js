@@ -44,9 +44,9 @@ Dplayer.prototype.delegate_video_event = function() {
     this.runtime.video.addEventListener('ended', this.on_video_ended.bind(this));
 }
 
-Dplayer.prototype.delegate_video_mask_event = function(){
-    this.delegate(this.query_element('video-mask'),'', 'contextmenu', this.on_video_mask_click.bind(this));
-    this.delegate(this.query_element('video-mask-about'),'', 'mouseup', this.on_video_about_click.bind(this));
+Dplayer.prototype.delegate_mask_event = function(){
+    this.delegate(this._class.VIDEO_MASK, 'contextmenu', this.on_mask_contextmenu.bind(this));
+    this.delegate(this._class.VIDEO_MASK_ABOUT, 'mouseup', this.on_mask_about_click.bind(this));
 }
 
 /**

@@ -53,6 +53,7 @@ Dplayer.prototype.on_control_progress_seek = function(event) {
         var total = this.query_element(this._class.PROGRESS_BAR).clientWidth;
         var percent = this.format_percent(offset, total);
         var position = parseInt(this.runtime.video.duration * percent / 100);
+        this.change_progress(position);
         this.runtime.video.currentTime = position;
     }
     return false;

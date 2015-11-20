@@ -1,5 +1,6 @@
 /**
  * 视频能够播放状态回调
+ * @param  event 事件对象
  */
 Dplayer.prototype.on_video_canplay = function(event) {
     this.debug('视频可以播放')
