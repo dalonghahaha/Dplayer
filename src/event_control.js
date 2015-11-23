@@ -64,29 +64,49 @@ Dplayer.prototype.on_control_progress_seek = function(event) {
  * @param  event 事件对象
  */
 Dplayer.prototype.on_control_play = function(event) {
-    if (this.runtime.playing) {
-        this.pause();
+    if(this.config.ad){
+        if(!this.runtime.ad_played){
+           this.ad_open_play();
+        } else{
+            if (this.runtime.playing) {
+                this.pause();
+            } else {
+                this.play();
+            }
+        }
     } else {
-        this.play();
+        if (this.runtime.playing) {
+            this.pause();
+        } else {
+            this.play();
+        }
     }
 }
 
 Dplayer.prototype.on_control_forward = function(event){
+    if(this.config.ad && !this.runtime.ad_played){
+        return false;
+    }
     var play_index = this.runtime.play_index;
     if(!this.runtime.playlist[play_index + 1]){
         this.error('不存在下一节');
         return false;
     }
+    this.runtime.ad_played = false;
     this.change_play(play_index + 1);
     this.runtime.play_index += 1;
 }
 
 Dplayer.prototype.on_control_backward = function(event){
+    if(this.config.ad && !this.runtime.ad_played){
+        return false;
+    }
     var play_index = this.runtime.play_index;
     if(!this.runtime.playlist[play_index - 1]){
         this.error('不存在上一节');
         return false;
     }
+    this.runtime.ad_played = false;
     this.change_play(play_index - 1);
     this.runtime.play_index -= 1;
 }
@@ -123,7 +143,8 @@ Dplayer.prototype.on_control_volume_seek = function(event) {
  * @param  event 事件对象
  */
 Dplayer.prototype.on_control_setting = function(event) {
-    this.debug('坑爹呢！');
+    this.show_down_message('你他妈的坑爹呢！');
+    setTimeout(this.close_down_message.bind(this),1000);
 }
 
 /**
@@ -149,6 +170,9 @@ Dplayer.prototype.on_control_definition_off = function(event){
 }
 
 Dplayer.prototype.on_control_definition_change = function(event){
+    if(this.config.ad && !this.runtime.ad_played){
+        return false;
+    }
     var definition = event.target.getAttribute('definition');
     this.runtime.play_definition = definition;
     if(!definition){
@@ -159,6 +183,7 @@ Dplayer.prototype.on_control_definition_change = function(event){
     var src_array = this.config.multiple ? this.config.playlist[this.runtime.play_index].src : this.config.src;
     var index = this.get_video_src_index(src_array,definition);
     var src = src_array[index]['url'];
+    this.debug(this.runtime.ad_played);
     //切换播放源
     this.change_src(src);
     //重构清晰度选项面板

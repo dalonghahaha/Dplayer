@@ -6,13 +6,15 @@
 	<link rel="stylesheet" href="../theme/font-awesome.min.css" />
 </head>
 <body>
-	<div id="myplayer"></div>
+	<div style="width:100%"> 
+		<div id="myplayer" style="width:840px;height:480px;margin: 0 auto;margin-top:50px;"></div>
+	</div>
 </body>
 </html>
-<script type="text/javascript" src="../src/_constructor.js"></script>
+<script type="text/javascript" src="../src/constructor.js"></script>
 <script type="text/javascript" src="../src/class.js"></script>
 <script type="text/javascript" src="../src/api.js"></script>
-<script type="text/javascript" src="../src/tools.js"></script>
+<script type="text/javascript" src="../src/tool.js"></script>
 <script type="text/javascript" src="../src/build.js"></script>
 <script type="text/javascript" src="../src/player.js"></script>
 <script type="text/javascript" src="../src/delegate.js"></script>
@@ -38,6 +40,27 @@
 				'link':'http://www.google.com'
 			}
 		],
+		'ad':{
+			'open':{
+				'type':'video',
+				'url':'http://7te89b.com1.z0.glb.clouddn.com/video/opening.mp4',
+				'time':8
+			},
+			'idle':{
+				'width':300,
+				'height':250,
+				'type':'image',
+				'source':[
+					{
+						'url':'http://d2.sina.com.cn/pfpghc2/201511/22/b9ecafaa64cc42b99eb1ef9f33bb882b.jpg',
+						'link':'http://www.google.com'
+					},{
+						'url':'http://d0.sina.com.cn/pfpghc2/201511/21/50d04f8307584dc79feab40603500bbb.jpg',
+						'link':'http://www.google.com'
+					}
+				]
+			}
+		},
 		'playlist':[
 			{
 				'src':[

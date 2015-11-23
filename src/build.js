@@ -93,43 +93,98 @@ Dplayer.prototype.build_video = function() {
 
 /**
  * 构造遮罩层
- * @return {[type]} [description]
  */
 Dplayer.prototype.build_video_mask = function() {
     var video_mask = this.create_element(this._class.VIDEO_MASK);
+    if(this.config.ad && this.config.ad.open){
+        //片头广告
+        video_mask.appendChild(this.build_video_ad_openning());
+    }
+     if(this.config.ad && this.config.ad.idle){
+        //片头广告
+        video_mask.appendChild(this.build_video_ad_idle());
+    }
     //右键菜单
-    video_mask.appendChild(this.build_context_menu());
+    video_mask.appendChild(this.build_mask_context_menu());
+    //底部消息
+    video_mask.appendChild(this.build_mask_down_message());
     return video_mask; 
+}
+
+/**
+ * 构造片头广告
+ */
+Dplayer.prototype.build_video_ad_openning = function(){
+    var ad_openning = this.create_element([this._class.AD_OPERNING,this._class.HIDDEN]);
+    //var ad_openning = this.create_element([this._class.AD_OPERNING]);
+    var ad_countdown = this.create_element(this._class.AD_COUNTDOWN);
+
+    ad_countdown.appendChild(this.create_element(this._class.AD_COUNTDOWN_TEXT,'广告剩余：'));
+    ad_countdown.appendChild(this.create_element(this._class.AD_COUNTDOWN_WARN,this.config.ad.open.time));
+    ad_countdown.appendChild(this.create_element(this._class.AD_COUNTDOWN_TEXT,'秒'));
+
+    ad_openning.appendChild(ad_countdown);
+
+    if(this.config.ad.open.type == 'video'){
+        this.runtime.ad_openning = document.createElement("video");
+        this.runtime.ad_openning.width = this.config.width;
+        this.runtime.ad_openning.height = this.config.height;
+        this.runtime.ad_openning.src = this.config.ad.open.url;
+        ad_openning.appendChild(this.runtime.ad_openning);
+    }
+    return ad_openning;
+}
+
+/**
+ * 构造空闲广告
+ */
+Dplayer.prototype.build_video_ad_idle = function(){
+    var ad_idle = this.create_element([this._class.AD_IDLE,this._class.HIDDEN]);
+    ad_idle.style.width = this.config.ad.idle.width + 'px';
+    ad_idle.style.height = this.config.ad.idle.height + 'px';
+    ad_idle.style.left = (this.config.width - this.config.ad.idle.width) / 2 + 'px';
+    ad_idle.style.top = (this.config.height - this.config.ad.idle.height) / 2 + 'px';
+    return ad_idle;
 }
 
 /**
  * 构造右键菜单
  * @return {[type]} [description]
  */
-Dplayer.prototype.build_context_menu = function(){
-    var video_mask_about = this.create_element([this._class.VIDEO_MASK_ABOUT,this._class.HIDDEN]);
+Dplayer.prototype.build_mask_context_menu = function(){
+    var mask_context_menu = this.create_element([this._class.VIDEO_MASK_ABOUT,this._class.HIDDEN]);
 
     var about_name = this.create_element(this._class.VIDEO_MASK_TEXT,'名称:Dplayer');
     about_name.setAttribute('action','http://www.Dplayer.com');
-    video_mask_about.appendChild(about_name);
+    mask_context_menu.appendChild(about_name);
 
     var about_version = this.create_element(this._class.VIDEO_MASK_TEXT,'版本:1.0.0');
     about_version.setAttribute('action','http://www.Dplayer.com');
-    video_mask_about.appendChild(about_version);
+    mask_context_menu.appendChild(about_version);
 
     var about_author = this.create_element(this._class.VIDEO_MASK_TEXT,'作者:龙翔云际');
     about_author.setAttribute('action','http://dalong.me');
-    video_mask_about.appendChild(about_author);
+    mask_context_menu.appendChild(about_author);
 
     if(this.config.about && this.config.about.length){
         for(var i=0;i<this.config.about.length;i++){
             var about = this.create_element(this._class.VIDEO_MASK_TEXT,this.config.about[i].text);
             about.setAttribute('action',this.config.about[i].link);
-            video_mask_about.appendChild(about);
+            mask_context_menu.appendChild(about);
         }
     }
 
-    return video_mask_about;
+    return mask_context_menu;
+}
+
+Dplayer.prototype.build_mask_down_message = function(){
+    var mask_down_message = this.create_element([this._class.DOWN_MESSAGE,this._class.HIDDEN]);
+
+    mask_down_message.appendChild(this.create_element([this._class.ICON_BASE,this._class.DOWN_MESSAGE_ICON_BASE]));
+
+    mask_down_message.appendChild(this.create_element(this._class.DOWN_MESSAGE_TEXT));
+
+    return mask_down_message;
 }
 
 /**
@@ -288,6 +343,6 @@ Dplayer.prototype.on_player_build = function() {
     this.delegate_mask_event();
     //自动播放   
     if (this.config.autoplay) {
-        this.play();
+        this.on_control_play();
     }
 }

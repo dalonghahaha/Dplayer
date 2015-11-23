@@ -28,6 +28,7 @@ Dplayer.prototype.on_video_progress = function(event) {
  */
 Dplayer.prototype.on_video_play = function(event) {
     this.debug('视频播放开始');
+    this.ad_idle_close();
     if (this.on_player_play && this.on_player_play instanceof Function) {
         this.on_player_play();
     }
@@ -39,6 +40,7 @@ Dplayer.prototype.on_video_play = function(event) {
  */
 Dplayer.prototype.on_video_pause = function(event) {
     this.debug('视频播放暂停');
+    this.ad_idle_show();
     if (this.on_player_pause && this.on_player_pause instanceof Function) {
         this.on_player_pause();
     }
@@ -97,4 +99,30 @@ Dplayer.prototype.on_video_fullscreenchange = function(event) {
         this.query_element(this._class.ICON_RESIZE).remove_class(this._class.ICON_EXITFULLSCREEN);
         this.query_element(this._class.ICON_RESIZE).add_class(this._class.ICON_FULLSCREEN);
     }
+}
+
+/**
+ * 正在寻求进度加载中
+ * @param  event 事件对象
+ */
+Dplayer.prototype.on_video_seeking = function(event) {
+    this.debug('视频正在寻求进度');
+    this.show_down_message('正在切换......');
+}
+
+/**
+ * 正在寻求进度加载完毕
+ * @param  event 事件对象
+ */
+Dplayer.prototype.on_video_seeked = function(event) {
+    this.debug('视频正在寻求进度加载完毕');
+    this.close_down_message();
+}
+
+/**
+ * 视频事件调试函数
+ * @param  event 事件对象
+ */
+Dplayer.prototype.on_video_event_debug = function(event){
+    this.debug(event.type);
 }

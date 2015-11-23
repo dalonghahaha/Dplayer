@@ -27,7 +27,6 @@ Dplayer.prototype.delegate = function(class_name, event_name, fun) {
 
 /**
  * 绑定video事件
- * @return {[type]} [description]
  */
 Dplayer.prototype.delegate_video_event = function() {
     //视频可以播放
@@ -42,16 +41,33 @@ Dplayer.prototype.delegate_video_event = function() {
     this.runtime.video.addEventListener('timeupdate', this.on_video_playing.bind(this));
     //视频播放结束时
     this.runtime.video.addEventListener('ended', this.on_video_ended.bind(this));
+    //成功获取资源长度
+    this.runtime.video.addEventListener('loadedmetadata', this.on_video_event_debug.bind(this));
+    //提示当前帧的数据是可用的
+    this.runtime.video.addEventListener('loadeddata', this.on_video_event_debug.bind(this));
+    //寻找中
+    this.runtime.video.addEventListener('seeking', this.on_video_seeking.bind(this));
+    //寻找完毕
+    this.runtime.video.addEventListener('seeked', this.on_video_seeked.bind(this));
+    //播放速率改变
+    this.runtime.video.addEventListener("ratechange", this.on_video_event_debug.bind(this));
+    //资源长度改变
+    this.runtime.video.addEventListener("durationchange", this.on_video_event_debug.bind(this));
+    //音量改变
+    this.runtime.video.addEventListener("volumechange", this.on_video_event_debug.bind(this));
 }
 
+/**
+ * 绑定遮罩层事件
+ */
 Dplayer.prototype.delegate_mask_event = function(){
     this.delegate(this._class.VIDEO_MASK, 'contextmenu', this.on_mask_contextmenu.bind(this));
     this.delegate(this._class.VIDEO_MASK_ABOUT, 'mouseup', this.on_mask_about_click.bind(this));
+    this.delegate(this._class.AD_IDLE, 'mouseup', this.on_ad_idle_click.bind(this));
 }
 
 /**
  * 绑定按钮区事件
- * @return {[type]} [description]
  */
 Dplayer.prototype.delegate_control_event = function() {
     //进度条切换
@@ -82,7 +98,6 @@ Dplayer.prototype.delegate_control_event = function() {
 
 /**
  * 注册全局函数
- * @return {[type]} [description]
  */
 Dplayer.prototype.delegate_document_event = function(){
     //坑爹的全屏API

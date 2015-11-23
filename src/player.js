@@ -77,7 +77,7 @@ Dplayer.prototype.change_src = function(src,from_begin){
             this.runtime.video.src = src;
             this.runtime.video.currentTime = position;
         }
-        this.play();
+        this.on_control_play();
     }
 }
 
@@ -101,6 +101,10 @@ Dplayer.prototype.pause = function() {
     this.query_element(this._class.ICON_SWITCH).add_class(this._class.ICON_PLAY);
 }
 
+/**
+ * 切换视频列表
+ * @param  index 视频列表索引
+ */
 Dplayer.prototype.change_play = function(index){
     if(!this.runtime.playing){
         if(this.runtime.playlist[index].thumb){
@@ -128,7 +132,6 @@ Dplayer.prototype.change_play = function(index){
         this.query_element(this._class.DEFINITION_BAR).add_class('hidden'); 
     }
 }
-
 
 /**
  * 视频进入全屏
@@ -173,6 +176,8 @@ Dplayer.prototype.resize = function(width, height) {
     this.runtime.video_container.style.height = height + 'px';
     this.runtime.video.width = width;
     this.runtime.video.height = height;
+    this.runtime.ad_openning.width = width;
+    this.runtime.ad_openning.height = height;
 }
 
 /**
@@ -214,4 +219,65 @@ Dplayer.prototype.change_volume = function(volume) {
     var percent = this.format_percent(volume, 100);
     this.query_element(this._class.VOLUME_KNOB_BAR).style.left = percent + "%";
     this.query_element(this._class.VOLUME_BAR).style.width = percent + "%";
+}
+
+/**
+ * 显示底部消息
+ * @param  message 消息
+ * @param  type    类别
+ */
+Dplayer.prototype.show_down_message = function(message,type) {
+    this.query_element(this._class.DOWN_MESSAGE_TEXT).innerText = message;
+    if(!type){
+        this.query_element(this._class.DOWN_MESSAGE_ICON_BASE).add_class(this._class.ICON_WARNING);
+    }
+    this.query_element(this._class.DOWN_MESSAGE).remove_class(this._class.HIDDEN);
+}
+
+/**
+ * 隐藏底部消息
+ */
+Dplayer.prototype.close_down_message = function(){
+    this.query_element(this._class.DOWN_MESSAGE).add_class(this._class.HIDDEN);
+    this.query_element(this._class.DOWN_MESSAGE_TEXT).innerText = '';
+    this.query_element(this._class.DOWN_MESSAGE_ICON_BASE).className = this._class.ICON_BASE +' '+ this._class.DOWN_MESSAGE_ICON_BASE
+}
+
+/**
+ * 播放片头广告播放开始
+ */
+Dplayer.prototype.ad_open_play = function(){
+    this.query_element(this._class.AD_OPERNING).remove_class(this._class.HIDDEN);
+    this.runtime.ad_openning.play();
+    this.runtime.ad_time = this.config.ad.open.time;
+    this.runtime.ad_countdown = setInterval(function(){
+        this.query_element(this._class.AD_COUNTDOWN_WARN).innerText = this.runtime.ad_time - 1;
+        this.runtime.ad_time = this.runtime.ad_time - 1;
+    }.bind(this), 1000);
+    setTimeout(this.ad_open_finish.bind(this), this.config.ad.open.time * 1000);
+}
+
+
+/**
+ * 片头广告播放结束
+ */
+Dplayer.prototype.ad_open_finish = function(){
+    clearInterval(this.runtime.ad_countdown);
+    this.query_element(this._class.AD_COUNTDOWN_WARN).innerText = this.config.ad.open.time;
+    this.query_element(this._class.AD_OPERNING).add_class(this._class.HIDDEN);
+    this.runtime.ad_played = true;
+    this.play();
+}
+
+Dplayer.prototype.ad_idle_show = function(){
+    if(this.config.ad.idle.type == 'image'){
+        var ad = this.random_of(this.config.ad.idle.source);
+        this.query_element(this._class.AD_IDLE).style.backgroundImage = "url(" + ad['url'] + ")";   
+        this.query_element(this._class.AD_IDLE).setAttribute('action',ad['link']);
+        this.query_element(this._class.AD_IDLE).remove_class(this._class.HIDDEN);
+    }
+}
+
+Dplayer.prototype.ad_idle_close = function(){
+    this.query_element(this._class.AD_IDLE).add_class(this._class.HIDDEN);
 }

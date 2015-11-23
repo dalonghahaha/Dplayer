@@ -15,8 +15,17 @@ Dplayer.prototype.on_mask_contextmenu = function(event){
  * 关于层点击回调
  * @param  event 事件对象
  */
-Dplayer.prototype.on_mask_about_click =function(event){
+Dplayer.prototype.on_mask_about_click = function(event){
     var link = event.target.getAttribute('action');
     window.open(link);
     event.preventDefault();
+}
+
+/**
+ * 空闲广告点击
+ * @param  event 事件对象
+ */
+Dplayer.prototype.on_ad_idle_click = function(event){
+	var link = event.target.getAttribute('action');
+    window.open(link);
 }

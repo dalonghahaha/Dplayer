@@ -47,6 +47,16 @@ Dplayer.prototype.index_of = function(array, find) {
 }
 
 /**
+ * 数组取随机元素
+ * @param  目标数组
+ */
+Dplayer.prototype.random_of = function(array) {
+    var length = array.length;
+    var index = Math.floor((Math.random() * length));
+    return array[index];
+}
+
+/**
  * 时间格式化函数
  * @param  second 秒数
  */

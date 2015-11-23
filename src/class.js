@@ -11,8 +11,17 @@ Dplayer.prototype._class = {
 
     //视频遮罩层
     VIDEO_MASK: 'video-mask',
+    AD_OPERNING:'ad-openning',
+    AD_COUNTDOWN:'ad-countdown',
+    AD_COUNTDOWN_TEXT:'ad-countdown-text',
+    AD_COUNTDOWN_WARN:'ad-countdown-warn',
+    AD_IDLE:'ad-idle',
     VIDEO_MASK_ABOUT: 'video-mask-about',
     VIDEO_MASK_TEXT: 'video-mask-text',
+    DOWN_MESSAGE:'down-message',
+    DOWN_MESSAGE_ICON_BASE:'icon-message',
+    ICON_WARNING:'icon-warning-sign',
+    DOWN_MESSAGE_TEXT:'down-message-text',
 
     //进度条
     PROGRESS_CONTROL_BAR: 'progress-control-bar',

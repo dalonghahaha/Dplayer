@@ -54,7 +54,9 @@ Dplayer.prototype.build_config = function(config) {
         //是否异步读取播放列表
         playlist_aysnc: false,
         //播放列表获取地址地址
-        playlist_url: null
+        playlist_url: null,
+        //广告
+        ad: null
     }
     if (config) {
         for (var p in config) {
@@ -89,6 +91,14 @@ Dplayer.prototype.build_runtime = function() {
         play_index:0,
         //当前播放清晰度
         play_definition:'',
+        //片头广告
+        ad_openning:null,
+        //广告时长
+        ad_time:0,
+        //广告已经播放完
+        ad_played:false,
+        //广告倒计时
+        ad_countdown:null,
     };
     if(this.config.multiple){
         runtime.playlist = this.config.playlist;
