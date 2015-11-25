@@ -232,6 +232,7 @@ Dplayer.prototype.show_down_message = function(message,type) {
         this.query_element(this._class.DOWN_MESSAGE_ICON_BASE).add_class(this._class.ICON_WARNING);
     }
     this.query_element(this._class.DOWN_MESSAGE).remove_class(this._class.HIDDEN);
+    this.query_element(this._class.DOWN_MESSAGE).add_class(this._animate.FADE_IN);
 }
 
 /**
@@ -239,6 +240,7 @@ Dplayer.prototype.show_down_message = function(message,type) {
  */
 Dplayer.prototype.close_down_message = function(){
     this.query_element(this._class.DOWN_MESSAGE).add_class(this._class.HIDDEN);
+    this.query_element(this._class.DOWN_MESSAGE).remove_class(this._animate.FADE_IN);
     this.query_element(this._class.DOWN_MESSAGE_TEXT).innerText = '';
     this.query_element(this._class.DOWN_MESSAGE_ICON_BASE).className = this._class.ICON_BASE +' '+ this._class.DOWN_MESSAGE_ICON_BASE
 }
@@ -269,15 +271,25 @@ Dplayer.prototype.ad_open_finish = function(){
     this.play();
 }
 
+/**
+ * 显示播放暂停广告
+ * @return {[type]} [description]
+ */
 Dplayer.prototype.ad_idle_show = function(){
     if(this.config.ad.idle.type == 'image'){
         var ad = this.random_of(this.config.ad.idle.source);
         this.query_element(this._class.AD_IDLE).style.backgroundImage = "url(" + ad['url'] + ")";   
         this.query_element(this._class.AD_IDLE).setAttribute('action',ad['link']);
         this.query_element(this._class.AD_IDLE).remove_class(this._class.HIDDEN);
+        this.query_element(this._class.AD_IDLE).add_class(this._animate.BOUNCE_IN);
     }
 }
 
+/**
+ * 隐藏播放暂停广告
+ * @return {[type]} [description]
+ */
 Dplayer.prototype.ad_idle_close = function(){
+    this.query_element(this._class.AD_IDLE).remove_class(this._animate.BOUNCE_IN);
     this.query_element(this._class.AD_IDLE).add_class(this._class.HIDDEN);
 }

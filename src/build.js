@@ -3,7 +3,7 @@
  * @param  class_name 类名
  * @param  inner_text 内容
  */
-Dplayer.prototype.create_element = function(class_name, inner_text) {
+Dplayer.prototype.create_element = function(class_name, inner_text, animated) {
     var element = document.createElement('div');
     if(class_name instanceof Array){
         element.className = class_name.join(' ');
@@ -12,6 +12,9 @@ Dplayer.prototype.create_element = function(class_name, inner_text) {
     }
     if (inner_text) {
         element.innerText = inner_text;
+    }
+    if(animated) {
+        element.className = element.className + ' ' + this._animate.BASE;
     }
     return element;
 }
@@ -139,7 +142,7 @@ Dplayer.prototype.build_video_ad_openning = function(){
  * 构造空闲广告
  */
 Dplayer.prototype.build_video_ad_idle = function(){
-    var ad_idle = this.create_element([this._class.AD_IDLE,this._class.HIDDEN]);
+    var ad_idle = this.create_element([this._class.AD_IDLE,this._class.HIDDEN],null,true);
     ad_idle.style.width = this.config.ad.idle.width + 'px';
     ad_idle.style.height = this.config.ad.idle.height + 'px';
     ad_idle.style.left = (this.config.width - this.config.ad.idle.width) / 2 + 'px';

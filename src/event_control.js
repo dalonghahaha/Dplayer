@@ -92,6 +92,7 @@ Dplayer.prototype.on_control_forward = function(event){
         this.error('不存在下一节');
         return false;
     }
+    this.ad_idle_close();
     this.runtime.ad_played = false;
     this.change_play(play_index + 1);
     this.runtime.play_index += 1;
@@ -106,6 +107,7 @@ Dplayer.prototype.on_control_backward = function(event){
         this.error('不存在上一节');
         return false;
     }
+    this.ad_idle_close();
     this.runtime.ad_played = false;
     this.change_play(play_index - 1);
     this.runtime.play_index -= 1;
@@ -144,7 +146,6 @@ Dplayer.prototype.on_control_volume_seek = function(event) {
  */
 Dplayer.prototype.on_control_setting = function(event) {
     this.show_down_message('你他妈的坑爹呢！');
-    setTimeout(this.close_down_message.bind(this),1000);
 }
 
 /**

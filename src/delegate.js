@@ -109,4 +109,9 @@ Dplayer.prototype.delegate_document_event = function(){
         this.runtime.progressing = false;
         this.query_element('video-mask-about').add_class('hidden');
     }.bind(this));    
+    document.addEventListener('keyup',function(event){
+        if(event.which == 32){
+            this.on_control_play();
+        }
+    }.bind(this));
 }

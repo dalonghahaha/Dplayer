@@ -72,3 +72,19 @@ Dplayer.prototype._class = {
     DEFINITION_OPTION_LAST: 'definition-option-last',
     DEFINITION_OPTION_SELECTED: 'definition-option-selected',
 }
+
+Dplayer.prototype._animate = {
+    BASE:'animated',
+    //淡入
+    FADE_IN:'fadeIn',
+    FADE_IN_DOWN:'fadeInDown',
+    FADE_IN_UP:'fadeInUp',
+    FADE_IN_LEFT:'fadeInLeft',
+    FADE_IN_RIGHT:'fadeInRight',
+    //弹入
+    BOUNCE_IN:'bounceIn',
+    BOUNCE_IN_DOWN:'bounceInDown',
+    BOUNCE_IN_UP:'bounceInUp',
+    BOUNCE_IN_LEFT:'bounceInLeft',
+    BOUNCE_IN_RIGHT:'bounceInRight',
+}
